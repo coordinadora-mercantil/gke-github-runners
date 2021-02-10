@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Deploy Self Hosted Runners
 on: [push]
 jobs:
   build:
