@@ -9,9 +9,9 @@ spec:
     kind: Deployment
     name: runner-deployment
   minReplicas: 2
-  maxReplicas: 5
+  maxReplicas: 10
   metrics:
     - type: Resource
       resource:
         name: cpu
-        targetAverageUtilization: 80
+        targetAverageUtilization: 85

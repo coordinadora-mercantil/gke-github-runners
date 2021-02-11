@@ -15,9 +15,9 @@ jobs:
         run: gcloud builds submit --tag gcr.io/${{ secrets.PROJECT_ID }}/runner:${{ github.sha }}
       - id: get-credentials
         name: Get Credentials
-        uses: GoogleCloudPlatform/github-actions/get-gke-credentials@master
+        uses: google-github-actions/get-gke-credentials@main
         with:
           cluster_name: ${{ secrets.CLUSTER_NAME }}
           location: us-central1-a
       - id: get-pods
-        run: kubectl get pods
+        run: kubectl --namespace github get pods
