@@ -30,17 +30,16 @@ jobs:
               with:
                   cluster_name: ${{ secrets.CLUSTER_NAME }}
                   location: us-central1-a
-            - name: Make envfile
-              uses: SpicyPizza/create-envfile@v1
-              with:
-                  envkey_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
-                  envkey_ACTION_URL: ${{ secrets.ACTION_URL }}
-                  file_name: runner.env
+            - shell: bash
+              name: Make file
+              env:
+                  ENV_FILE: ${{ secrets.ACTIONS_ENV }}
+              run: echo $ACTIONS_ENV > runner.env
             - name: Setup Kustomize
               uses: imranismail/setup-kustomize@v1
               with:
                   kustomize-version: '3.9.2'
             - name: Update image
               run: kustomize edit set image gcr.io/PROJECT_ID/runner:latest=gcr.io/${{ secrets.PROJECT_ID }}/runner:${{ github.sha }}
-            - name: Build
+            - name: Build and Deploy
               run: kustomize build . | kubectl apply -f -
