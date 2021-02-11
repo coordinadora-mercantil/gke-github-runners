@@ -19,9 +19,6 @@ jobs:
         with:
           cluster_name: ${{ secrets.CLUSTER_NAME }}
           location: us-central1-a
-      - id: create-secret
-        name: Create secret
-        run: kubectl create secret generic runner-k8s-secret --from-literal=GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
