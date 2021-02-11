@@ -30,10 +30,12 @@ jobs:
               with:
                   cluster_name: ${{ secrets.CLUSTER_NAME }}
                   location: us-central1-a
-            - shell: bash
-              name: Make file
-              run: echo ${{ secrets.ACTIONS_ENV }} > runner.env
-            - run: cat runner.env
+            - name: Make envfile
+              uses: SpicyPizza/create-envfile@v1
+              with:
+                  envkey_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
+                  envkey_ACTION_URL: 'https://github.com/coordinadora-mercantil'
+                  file_name: runner.env
             - name: Setup Kustomize
               uses: imranismail/setup-kustomize@v1
               with:
