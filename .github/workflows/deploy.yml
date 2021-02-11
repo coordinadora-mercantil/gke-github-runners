@@ -32,9 +32,8 @@ jobs:
                   location: us-central1-a
             - shell: bash
               name: Make file
-              env:
-                  ENV_FILE: ${{ secrets.ACTIONS_ENV }}
-              run: echo $ACTIONS_ENV > runner.env
+              run: echo ${{ secrets.ACTIONS_ENV }} > runner.env
+            - run: cat runner.env
             - name: Setup Kustomize
               uses: imranismail/setup-kustomize@v1
               with:
