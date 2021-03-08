@@ -3,7 +3,7 @@ on: [push]
 jobs:
     build:
         runs-on: ubuntu-latest
-        name: Build
+        name: build
         steps:
             - uses: actions/checkout@v2
             - uses: google-github-actions/setup-gcloud@master

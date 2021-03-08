@@ -8,7 +8,11 @@ RUN apt-get -qqy update && \
     tar \
     python
 
-ARG GH_RUNNER_VERSION="2.276.1"
+RUN curl -fsSL https://get.docker.com -o- | sh && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
+
+ARG GH_RUNNER_VERSION="2.277.1"
 
 WORKDIR /runner
 
